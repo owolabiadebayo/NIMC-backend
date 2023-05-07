@@ -18,6 +18,7 @@ app.use(bodyParser.json())
 
 
 //Db connection
+mongoose.set('strictQuery', false);
 mongoose.connect('mongodb+srv://Bayo4real:Bayo4real@hms.qg1nt.mongodb.net/?retryWrites=true&w=majority', {
     useNewUrlParser:true,
     useUnifiedTopology: true, 
