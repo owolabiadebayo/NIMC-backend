@@ -1,6 +1,5 @@
 import express from "express";
 import { getData, getAllData, addData } from "../controller/controller.js";
-
 const router = express.Router();
 
 router.post('/adddata', addData);
