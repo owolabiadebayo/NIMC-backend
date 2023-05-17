@@ -25,9 +25,9 @@ const dataSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  timestamp: {
-    type: Date,
-    default: Date.now,
+  date: {
+    type: String,
+    default: () => new Date().toISOString().split("T")[0],
   },
 });
 
