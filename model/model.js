@@ -3,29 +3,32 @@ import mongoose from "mongoose";
 const dataSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
   },
   newName: {
     type: String,
-    required: true
+    required: true,
   },
   affidavit: {
     type: String,
-    required: true
+    required: true,
   },
   publication: {
     type: String,
-    required: true
+    required: true,
   },
   persons: {
     type: String,
-    required: true
-    },
-    transactionId: {
+    required: true,
+  },
+  transactionId: {
     type: String,
-    required: true
-    }
-    });
+    required: true,
+  },
+  timestamp: {
+    type: Date,
+    default: Date.now,
+  },
+});
 
-
-export default mongoose.model("Data", dataSchema)
+export default mongoose.model("Data", dataSchema);
