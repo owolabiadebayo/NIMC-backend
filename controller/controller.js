@@ -35,8 +35,15 @@ export const getData = async (req, res) => {
   }
 };
 export const addData = async (req, res) => {
-  const { name, newName, affidavit, publication, persons, transactionId } =
-    req.body;
+  const {
+    name,
+    newName,
+    affidavit,
+    publication,
+    persons,
+    referral,
+    transactionId,
+  } = req.body;
 
   const data = new Data({
     name,
