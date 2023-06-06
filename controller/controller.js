@@ -37,7 +37,6 @@ export const getData = async (req, res) => {
 export const addData = async (req, res) => {
   const { name, newName, affidavit, publication, persons, transactionId } =
     req.body;
-  console.log(req.body);
 
   const data = new Data({
     name,
@@ -45,6 +44,7 @@ export const addData = async (req, res) => {
     affidavit,
     publication,
     persons,
+    referral,
     transactionId,
   });
 

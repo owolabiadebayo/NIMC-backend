@@ -21,6 +21,10 @@ const dataSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  referral: {
+    type: String,
+    required: true,
+  },
   transactionId: {
     type: String,
     required: true,
