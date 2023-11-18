@@ -1,31 +1,39 @@
 import mongoose from "mongoose";
 
 const dataSchema = new mongoose.Schema({
-  name: {
+  Application_nos: {
+    type: Number,
+    required: true,
+  },
+  Selected: {
     type: String,
     required: true,
   },
-  newName: {
+  Address1: {
     type: String,
     required: true,
   },
-  affidavit: {
+  Address2: {
     type: String,
     required: true,
   },
-  publication: {
+  Family: {
     type: String,
     required: true,
   },
-  persons: {
+  Landmark: {
     type: String,
     required: true,
   },
-  referral: {
+  Email: {
     type: String,
     required: true,
   },
-  transactionId: {
+  Imagedata: {
+    type: String,
+    required: true,
+  },
+  Names: {
     type: String,
     required: true,
   },

@@ -4,6 +4,8 @@ import cors from "cors";
 import routes from "./route/route.js";
 import bodyParser from "body-parser";
 const app = express();
+import dotenv from "dotenv";
+dotenv.config();
 
 //middleware
 
