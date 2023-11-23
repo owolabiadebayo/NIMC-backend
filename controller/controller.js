@@ -90,67 +90,92 @@ export const addData = async (req, res) => {
 
   await data.save();
   const message = `<table>
-    <tbody>
-        <tr>
-            <td style="padding:20px 30px 40px 30px;" bgcolor="#f9f9f9">
-                <table width="100%" cellspacing="0" cellpadding="0" border="0">
-                    <tbody>
-                        <tr>
-                            <td style="padding:5px 0 20px 10px;">
-                                <strong>
-                                    <p>Hello ${req.body.Names},</p>
-                                </strong>
-                                <p>Congratulation on your effortnin applying for the Wase LG Indegene Certificate. To continue the Application Process, do the following
-                                <ul>
-                                <li>
-                                Print the Email and Proceed to the Emir Mai angwa
-                                </li>
-                                <li>Obtain The attestation letter from the Emir mai angwa</li>
-                                <li>Proceed with the signed attestation to the office of chairman Wase Lg for further processing.</li>
-                                <li> Wait for an email with your Application number and further download instructions</li>
-                                </ul>
-                                <strong>Thank you</strong>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </td>
-        </tr>
-    </tbody>
+  <tbody>
+      <tr>
+          <td style="padding:20px 30px 40px 30px;" bgcolor="#f9f9f9">
+              <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                  <tbody>
+                      <tr>
+                          <td style="padding:5px 0 20px 10px; font-size: 18px;">
+                              <strong>
+                                  <p style="font-size: 20px;">Hello ${req.body.Names},</p> 
+                              </strong>
+                              <p style="font-size: 16px;"> 
+                                  Congratulation on your effort in applying for the Wase LG Indegene Certificate. To continue the Application Process, do the following
+                              </p>
+                              <ul style="font-size: 16px;"> 
+                                  <li>
+                                      Print the Email and Proceed to the Emir Mai angwa
+                                  </li>
+                                  <li>
+                                      Obtain The attestation letter from the Emir mai angwa
+                                  </li>
+                                  <li>
+                                      Proceed with the signed attestation to the office of chairman Wase Lg for further processing.
+                                  </li>
+                                  <li>
+                                      Wait for an email with your Application number and further download instructions
+                                  </li>
+                              </ul>
+                              <strong style="font-size: 18px;">Thank you</strong> 
+                          </td>
+                      </tr>
+                  </tbody>
+              </table>
+          </td>
+      </tr>
+  </tbody>
 </table>`;
+
   const message2 = `<table>
-    <tbody>
-        <tr>
-            <td style="padding:20px 30px 40px 30px;" bgcolor="#f9f9f9">
-                <table width="100%" cellspacing="0" cellpadding="0" border="0">
-                    <tbody>
-                        <tr>
-                            <td style="padding:5px 0 20px 10px;">
-                                <strong>
-                                    <p>Dear Chairman Local Govt,</p>
-                                </strong>
-                                <p>Kindly find the detaila of the Applicant
-                                <ul>
+<tbody>
+    <tr>
+        <td style="padding:20px 30px 40px 30px;" bgcolor="#f9f9f9">
+            <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                <tbody>
+                    <tr>
+                        <td style="padding:5px 0 20px 10px; font-size: 18px;"> 
+                            <strong>
+                                <p style="font-size: 20px;">Dear Chairman Local Govt,</p> 
+                            </strong>
+                            <p style="font-size: 16px;">
+                                Kindly find the details of the Applicant
+                            </p>
+                            <ul style="font-size: 16px;"> 
                                 <li>
-                                Application Nos ................ ${req.body.Application_nos}
+                                    Application Nos ................ ${req.body.Application_nos}
                                 </li>
-                                <li>Names ..................${req.body.Names}</li>
-                                <li>Gender ..................${req.body.Gender}</li>
-                                <li>Wards ..................${req.body.Selected}</li>
-                                <li>Email....................${req.body.Email}</li>
-                                <li>Address .............. ${req.body.Address1}</li>
-                                <li>District ..............${req.body.Landmark} </li>
-                                <li>Phone Number ...........${req.body.Phonenos}</li>
-                                </ul>
-                                <strong>Thank you</strong>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </td>
-        </tr>
-    </tbody>
+                                <li>
+                                    Names ..................${req.body.Names}
+                                </li>
+                                <li>
+                                    Gender ..................${req.body.Gender}
+                                </li>
+                                <li>
+                                    Wards ..................${req.body.Selected}
+                                </li>
+                                <li>
+                                    Email....................${req.body.Email}
+                                </li>
+                                <li>
+                                    Address .............. ${req.body.Address1}
+                                </li>
+                                <li>
+                                    District ..............${req.body.Landmark}
+                                </li>
+                                <li>
+                                    Phone Number ......${req.body.Phonenos}
+                                </li>
+                            </ul>
+                            <strong style="font-size: 18px;">Thank you</strong>
+                    </tr>
+                </tbody>
+            </table>
+        </td>
+    </tr>
+</tbody>
 </table>`;
+
   await sendEmail(
     req.body.Email,
     `Certificate of indegene for ${process.env.LOCALGOVT}`,
