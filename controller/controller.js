@@ -70,6 +70,8 @@ export const addData = async (req, res) => {
     Imagedata,
     Email,
     Application_nos,
+    Phonenos,
+    Gender,
   } = req.body;
 
   const data = new Data({
@@ -82,6 +84,8 @@ export const addData = async (req, res) => {
     Imagedata,
     Email,
     Selected,
+    Phonenos,
+    Gender,
   });
 
   await data.save();
@@ -96,6 +100,49 @@ export const addData = async (req, res) => {
                                 <strong>
                                     <p>Hello ${req.body.Names},</p>
                                 </strong>
+                                <p>Congratulation on your effortnin applying for the Wase LG Indegene Certificate. To continue the Application Process, do the following
+                                <ul>
+                                <li>
+                                Print the Email and Proceed to the Emir Mai angwa
+                                </li>
+                                <li>Obtain The attestation letter from the Emir mai angwa</li>
+                                <li>Proceed with the signed attestation to the office of chairman Wase Lg for further processing.</li>
+                                <li> Wait for an email with your Application number and further download instructions</li>
+                                </ul>
+                                <strong>Thank you</strong>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table>`;
+  const message2 = `<table>
+    <tbody>
+        <tr>
+            <td style="padding:20px 30px 40px 30px;" bgcolor="#f9f9f9">
+                <table width="100%" cellspacing="0" cellpadding="0" border="0">
+                    <tbody>
+                        <tr>
+                            <td style="padding:5px 0 20px 10px;">
+                                <strong>
+                                    <p>Dear Chairman Local Govt,</p>
+                                </strong>
+                                <p>Kindly find the detaila of the Applicant
+                                <ul>
+                                <li>
+                                Application Nos ................ ${req.body.Application_nos}
+                                </li>
+                                <li>Names ..................${req.body.Names}</li>
+                                <li>Gender ..................${req.body.Gender}</li>
+                                <li>Wards ..................${req.body.Selected}</li>
+                                <li>Email....................${req.body.Email}</li>
+                                <li>Address .............. ${req.body.Address1}</li>
+                                <li>District ..............${req.body.Landmark} </li>
+                                <li>Phone Number ...........${req.body.Phonenos}</li>
+                                </ul>
+                                <strong>Thank you</strong>
                             </td>
                         </tr>
                     </tbody>
@@ -109,11 +156,10 @@ export const addData = async (req, res) => {
     `Certificate of indegene for ${process.env.LOCALGOVT}`,
     message
   );
-
   await sendEmail(
     "owolabiyemisi10@gmail.com",
     `Certificate of indegene for ${process.env.LOCALGOVT}`,
-    message
+    message2
   );
   res.status(200).json({ message: "Data saved successfully" });
 };

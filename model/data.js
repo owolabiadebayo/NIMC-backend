@@ -5,11 +5,19 @@ const dataSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  Gender: {
+    type: String,
+    required: true,
+  },
   Selected: {
     type: String,
     required: true,
   },
   Address1: {
+    type: String,
+    required: true,
+  },
+  Phonenos: {
     type: String,
     required: true,
   },
