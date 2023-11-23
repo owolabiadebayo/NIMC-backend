@@ -143,31 +143,31 @@ export const addData = async (req, res) => {
                             </p>
                             <ul style="font-size: 16px; line-height: 24px;"> <!-- Adjust font-size here -->
                                 <li>
-                                    Application Nos ................ ${req.body.Application_nos}
+                                    Application Nos -------> ${req.body.Application_nos}
                                 </li>
                                 <li>
-                                    Names ..................${req.body.Names}
+                                    Names ------>${req.body.Names}
                                 </li>
                                 <li>
-                                    Gender ..................${req.body.Gender}
+                                    Gender ------>${req.body.Gender}
                                 </li>
                                 <li>
-                                    Wards ..................${req.body.Selected}
+                                    Wards ------->${req.body.Selected}
                                 </li>
                                 <li>
-                                    Email....................${req.body.Email}
+                                    Email ------->${req.body.Email}
                                 </li>
                                 <li>
-                                    Address .............. ${req.body.Address1}
+                                    Address -------> ${req.body.Address1}
                                 </li>
                                 <li>
-                                    District ..............${req.body.Landmark}
+                                    District -------> ${req.body.Landmark}
                                 </li>
                                 <li>
-                                    Phone Number ......${req.body.Phonenos}
+                                    Phone Number ------> ${req.body.Phonenos}
                                 </li>
                             </ul>
-                            <strong style="font-size: 18px; line-height: 28px;">Thank you</strong> <!-- Adjust font-size here -->
+                            <strong style="font-size: 18px; line-height: 28px;">Thank you</strong> 
                         </td>
                     </tr>
                 </tbody>
@@ -183,7 +183,7 @@ export const addData = async (req, res) => {
     message
   );
   await sendEmail(
-    "owolabiyemisi10@gmail.com",
+    "geosoftsolutionslimited@gmail.com",
     `Certificate of indegene for ${process.env.LOCALGOVT}`,
     message2
   );
