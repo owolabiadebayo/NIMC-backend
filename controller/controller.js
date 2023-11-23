@@ -92,18 +92,18 @@ export const addData = async (req, res) => {
   const message = `<table>
   <tbody>
       <tr>
-          <td style="padding:20px 30px 40px 30px;" bgcolor="#f9f9f9">
+          <td style="padding:20px 30px 40px 30px;" >
               <table width="100%" cellspacing="0" cellpadding="0" border="0">
                   <tbody>
                       <tr>
-                          <td style="padding:5px 0 20px 10px; font-size: 18px;">
+                          <td style="padding:5px 0 20px 10px; font-size: 18px; line-height: 24px;">
                               <strong>
-                                  <p style="font-size: 20px;">Hello ${req.body.Names},</p> 
+                                  <p style="font-size: 20px; line-height: 28px;">Hello ${req.body.Names},</p>
                               </strong>
-                              <p style="font-size: 16px;"> 
+                              <p style="font-size: 16px; line-height: 24px;">
                                   Congratulation on your effort in applying for the Wase LG Indegene Certificate. To continue the Application Process, do the following
                               </p>
-                              <ul style="font-size: 16px;"> 
+                              <ul style="font-size: 16px; line-height: 24px;">
                                   <li>
                                       Print the Email and Proceed to the Emir Mai angwa
                                   </li>
@@ -117,7 +117,7 @@ export const addData = async (req, res) => {
                                       Wait for an email with your Application number and further download instructions
                                   </li>
                               </ul>
-                              <strong style="font-size: 18px;">Thank you</strong> 
+                              <strong style="font-size: 18px; line-height: 28px;">Thank you</strong>
                           </td>
                       </tr>
                   </tbody>
@@ -130,18 +130,18 @@ export const addData = async (req, res) => {
   const message2 = `<table>
 <tbody>
     <tr>
-        <td style="padding:20px 30px 40px 30px;" bgcolor="#f9f9f9">
+        <td style="padding:20px 30px 40px 30px;" >
             <table width="100%" cellspacing="0" cellpadding="0" border="0">
                 <tbody>
                     <tr>
-                        <td style="padding:5px 0 20px 10px; font-size: 18px;"> 
+                        <td style="padding:5px 0 20px 10px; font-size: 18px; line-height: 24px;"> <!-- Adjust font-size here -->
                             <strong>
-                                <p style="font-size: 20px;">Dear Chairman Local Govt,</p> 
+                                <p style="font-size: 20px; line-height: 28px;">Dear Chairman Local Govt,</p> <!-- Adjust font-size here -->
                             </strong>
-                            <p style="font-size: 16px;">
+                            <p style="font-size: 16px; line-height: 24px;"> <!-- Adjust font-size here -->
                                 Kindly find the details of the Applicant
                             </p>
-                            <ul style="font-size: 16px;"> 
+                            <ul style="font-size: 16px; line-height: 24px;"> <!-- Adjust font-size here -->
                                 <li>
                                     Application Nos ................ ${req.body.Application_nos}
                                 </li>
@@ -167,7 +167,8 @@ export const addData = async (req, res) => {
                                     Phone Number ......${req.body.Phonenos}
                                 </li>
                             </ul>
-                            <strong style="font-size: 18px;">Thank you</strong>
+                            <strong style="font-size: 18px; line-height: 28px;">Thank you</strong> <!-- Adjust font-size here -->
+                        </td>
                     </tr>
                 </tbody>
             </table>
