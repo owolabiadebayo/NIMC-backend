@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const dataSchema = new mongoose.Schema({
   Application_nos: {
-    type: Number,
+    type: String,
     required: true,
   },
   Gender: {

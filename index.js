@@ -20,7 +20,7 @@ app.use(bodyParser.json());
 mongoose.set("strictQuery", false);
 mongoose
   .connect(
-    "mongodb+srv://Bayo4real:Bayo4real@hms.qg1nt.mongodb.net/?retryWrites=true&w=majority",
+    "mongodb+srv://admin100:admin100@waselg.tyesk6d.mongodb.net/?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
