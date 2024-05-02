@@ -104,9 +104,10 @@ export const addData = async (req, res) => {
                                   Congratulation on your effort in applying for the Wase LG Indegene Certificate. To continue the Application Process, do the following
                               </p>
                               <ul style="font-size: 16px; line-height: 24px;">
-                                  <li>
-                                      Print the Email and Proceed to the Emir Mai angwa
+                                      <li>
+                                      Print the Email 
                                   </li>
+                                  <li> Download your Clearance form. <i>https://drive.google.com/uc?export=download&id=11BPXgchQe33oadJf3pvrjCm6ZaYCn96H<i> and Proceed to the Emir Mai angwa</li>
                                   <li>
                                       Obtain The attestation letter from the Emir mai angwa
                                   </li>
