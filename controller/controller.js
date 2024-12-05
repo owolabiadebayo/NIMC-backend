@@ -22,7 +22,7 @@ export const getData = async (req, res) => {
   let config = {
     method: "post",
     maxBodyLength: Infinity,
-    url: "https://geosoft-nimc-portal-backend-1.onrender.com/api/verification",
+    url: "https://geosoft-nimc-portal-backend-2q01mugrn-owolabiadebayos-projects.vercel.app/api/verification",
     headers: {
       "Content-Type": "application/json",
     },
