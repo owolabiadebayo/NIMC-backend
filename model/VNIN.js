@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const VNIN = new mongoose.Schema({
   vNIN: {
@@ -6,4 +6,5 @@ const VNIN = new mongoose.Schema({
     required: "vNIN is required",
   },
 });
-export default mongoose.model("VNIN", VNIN);
+
+module.exports = mongoose.model("VNIN", VNIN);

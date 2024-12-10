@@ -1,65 +1,97 @@
-import Data from "../model/data.js";
-import axios from "axios";
-import sendEmail from "../utils/sendEmail.js";
+const Data = require("../model/data");
+const axios = require("axios");
+const sendEmail = require("../utils/sendEmail");
+const qs = require("qs");
+const fs = require("fs");
+const { execSync } = require("child_process");
 
-export const getData = async (req, res) => {
+const publicKeyPath = "publickey.key";
+
+exports.getData = async (req, res) => {
   console.log(req.body.vNIN);
-  const vNIN = req.body.vNIN;
 
-  let data = JSON.stringify({
-    token: "305d46ca31321acf07cfdb964e91f16b96af409643de952413eb679317ada94e",
-    verify: {
-      email: "artademi@gmail.com",
-      firstname: "Jude",
-      lastname: "Okoye",
-      phone: "08131111111",
-      idno: vNIN,
-      idtype: "VNIN",
-      reference: "BC534527756685UZZ",
-    },
+  let datar = qs.stringify({
+    agentID: "MQSSKY-4549",
+    vNIN: req.body.vNIN,
+    RPShortCode: "119887",
   });
+  console.log("data:", datar);
 
   let config = {
     method: "post",
     maxBodyLength: Infinity,
-    url: "https://geosoft-nimc-portal-backend.onrender.com/api/verification",
+    url: "https://tk.nimc.gov.ng/api/v1/apiVerification/enterprise/direct/vNIN",
     headers: {
-      "Content-Type": "application/json",
+      "x-api-key": "dgmP5YTlXyYy7SGGzjJKL5nj3f&Le%Pmxxnh&nbn",
+      "Content-Type": "application/x-www-form-urlencoded",
     },
-    data: data,
+    data: datar,
   };
 
   axios
     .request(config)
-    .then((response) => {
-      console.log(JSON.stringify(response.data));
-      res.json(response.data);
+    .then(async (response) => {
+      const jsonStr = JSON.stringify(response.data);
+      const data = JSON.parse(jsonStr);
+      console.log(data);
+      if (data.data) {
+        fs.writeFileSync("publicpayload.b64", data.data);
+        const publicPayloadPath = "publicpayload.b64";
+
+        const publicPayload = fs
+          .readFileSync(publicPayloadPath)
+          .toString()
+          .trim();
+
+        //const command = `echo ${publicPayload} | base64 -d | openssl rsautl -decrypt -oaep -inkey ${publicKeyPath}`;
+
+        const command = `echo ${publicPayload} | base64 -d | openssl pkeyutl -decrypt -inkey ${publicKeyPath} -pkeyopt rsa_padding_mode:oaep`;
+
+        let stringDecryptedPayload;
+        try {
+          stringDecryptedPayload = execSync(command).toString();
+          console.log("Decrypted Payload:", stringDecryptedPayload);
+        } catch (error) {
+          console.error("Error executing command:", error.message);
+          return res
+            .status(500)
+            .json({ message: "Decryption failed", error: error.message });
+        }
+
+        let decryptedPayload;
+        try {
+          decryptedPayload = JSON.parse(stringDecryptedPayload);
+        } catch (error) {
+          console.error("Error parsing decrypted payload:", error.message);
+          return res
+            .status(500)
+            .json({
+              message: "Decryption result is not valid JSON",
+              error: error.message,
+            });
+        }
+
+        // Assuming decryptedPayload is a JSON object
+        const updatedData = {
+          ...decryptedPayload,
+          photograph: data.photograph,
+          // barcode: png.toString("base64"),
+        };
+
+        // Remove userid and agentID properties
+        const { userid, agentID, ...messageData } = updatedData;
+
+        res.status(200).json({ message: messageData, success: data.success });
+      } else {
+        res.status(500).json({ message: data.message });
+      }
     })
     .catch((error) => {
-      if (error.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        console.log(error.response.status);
-        console.log(error.response.headers);
-
-        // Display the error message to the user
-        const errorMessage =
-          error.response.data.message || "An unknown error occurred.";
-        res.json({ error: errorMessage });
-      } else if (error.request) {
-        // The request was made but no response was received
-        // `error.request` is an instance of XMLHttpRequest in the browser and an instance of
-        // http.ClientRequest in Node.js
-        console.log(error.request);
-        res.json({ error: "Could not connect to the server." });
-      } else {
-        // Something happened in setting up the request that triggered an Error
-        console.log("Error", error.message);
-        res.json({ error: error.message });
-      }
+      res.status(500).json({ message: error.message });
     });
 };
-export const addData = async (req, res) => {
+
+exports.addData = async (req, res) => {
   const {
     Selected,
     Family,
@@ -92,7 +124,7 @@ export const addData = async (req, res) => {
   const message = `<table>
   <tbody>
       <tr>
-          <td style="padding:20px 30px 40px 30px;" >
+          <td style="padding:20px 30px 40px 30px;">
               <table width="100%" cellspacing="0" cellpadding="0" border="0">
                   <tbody>
                       <tr>
@@ -130,18 +162,18 @@ export const addData = async (req, res) => {
   const message2 = `<table>
 <tbody>
     <tr>
-        <td style="padding:20px 30px 40px 30px;" >
+        <td style="padding:20px 30px 40px 30px;">
             <table width="100%" cellspacing="0" cellpadding="0" border="0">
                 <tbody>
                     <tr>
-                        <td style="padding:5px 0 20px 10px; font-size: 18px; line-height: 24px;"> <!-- Adjust font-size here -->
+                        <td style="padding:5px 0 20px 10px; font-size: 18px; line-height: 24px;">
                             <strong>
-                                <p style="font-size: 20px; line-height: 28px;">Dear Chairman Local Govt,</p> <!-- Adjust font-size here -->
+                                <p style="font-size: 20px; line-height: 28px;">Dear Chairman Local Govt,</p>
                             </strong>
-                            <p style="font-size: 16px; line-height: 24px;"> <!-- Adjust font-size here -->
+                            <p style="font-size: 16px; line-height: 24px;">
                                 Kindly find the details of the Applicant
                             </p>
-                            <ul style="font-size: 16px; line-height: 24px;"> <!-- Adjust font-size here -->
+                            <ul style="font-size: 16px; line-height: 24px;">
                                 <li>
                                     Application Nos -------> ${req.body.Application_nos}
                                 </li>
@@ -167,7 +199,7 @@ export const addData = async (req, res) => {
                                     Phone Number ------> ${req.body.Phonenos}
                                 </li>
                             </ul>
-                            <strong style="font-size: 18px; line-height: 28px;">Thank you</strong> 
+                            <strong style="font-size: 18px; line-height: 28px;">Thank you</strong>
                         </td>
                     </tr>
                 </tbody>
@@ -183,7 +215,7 @@ export const addData = async (req, res) => {
     message
   );
   await sendEmail(
-    "geosoftsolutionslimited@gmail.com",
+    "waselgc.gov.ng@gmail.com",
     `Certificate of indegene for ${process.env.LOCALGOVT}`,
     message2
   );

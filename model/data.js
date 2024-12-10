@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const dataSchema = new mongoose.Schema({
   Application_nos: {
@@ -51,4 +51,4 @@ const dataSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("Data", dataSchema);
+module.exports = mongoose.model("Data", dataSchema);
